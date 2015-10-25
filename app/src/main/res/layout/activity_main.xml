@@ -1,35 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp"
+    style="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
     tools:context="pz2015.habits.rmm.activity.MainActivity">
 
-    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-        <!-- Framelayout to display Fragments (main content view) -->
-        <FrameLayout
-            android:id="@+id/frame_container"
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"/>
 
-        <!-- Listview to display slider menu (navigation drawer)-->
-        <ListView
-            android:id="@+id/list_slidermenu"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/list_background"
-            android:choiceMode="singleChoice"
-            android:divider="@color/list_divider"
-            android:dividerHeight="1dp"
-            android:listSelector="@drawable/list_selector" />
-    </android.support.v4.widget.DrawerLayout>
+    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>

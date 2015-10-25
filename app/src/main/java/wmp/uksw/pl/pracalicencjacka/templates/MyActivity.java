@@ -20,6 +20,9 @@ public abstract class MyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Disable Title
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         //creates SessionManager object that helps with managing
         this.sessionManager = new SessionManager(getContext());
 
