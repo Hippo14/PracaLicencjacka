@@ -9,17 +9,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import wmp.uksw.pl.pracalicencjacka.fragments.FirstFragment;
 import wmp.uksw.pl.pracalicencjacka.fragments.SecondFragment;
-import wmp.uksw.pl.pracalicencjacka.fragments.SmartFragmentStatePagerAdapter;
 import wmp.uksw.pl.pracalicencjacka.templates.MyActivity;
 
 public class MainActivity extends MyActivity {
 
-    SmartFragmentStatePagerAdapter fragmentPagerAdapter;
+    FragmentPagerAdapter fragmentPagerAdapter;
     RelativeLayout relativeLayout;
 
     @Override
@@ -28,31 +26,9 @@ public class MainActivity extends MyActivity {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         fragmentPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(fragmentPagerAdapter);
-
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setClipToPadding(false);
-        viewPager.setPageMargin(12);
-
-        viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                int pageWidth = page.getWidth();
-                int pageHeight = page.getHeight();
-
-                if (position < -1) { // [-Infinity,-1)
-                    // This page is way off-screen to the left.
-                    viewPager.setAlpha(0);
-                } else if(position <= 1){ // Page to the left, page centered, page to the right
-                    // modify page view animations here for pages in view
-                } else { // (1,+Infinity]
-                    // This page is way off-screen to the right.
-                    viewPager.setAlpha(0);
-                }
-            }
-        });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -112,7 +88,7 @@ public class MainActivity extends MyActivity {
         return getApplicationContext();
     }
 
-    public static class MyPagerAdapter extends SmartFragmentStatePagerAdapter  {
+    public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
         public MyPagerAdapter(FragmentManager fm) {
@@ -143,11 +119,6 @@ public class MainActivity extends MyActivity {
         @Override
         public int getCount() {
             return NUM_ITEMS;
-        }
-
-        @Override
-        public float getPageWidth(int position) {
-            return 0.93f;
         }
     }
 
